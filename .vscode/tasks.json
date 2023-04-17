@@ -1,0 +1,720 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "BulletFarm Mac Debug Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"Mac",
+				"Debug",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm Mac Debug Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"Mac",
+				"Debug",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"BulletFarm Mac Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm Mac Debug Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"Mac",
+				"Debug",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm Mac DebugGame Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"Mac",
+				"DebugGame",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm Mac DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"Mac",
+				"DebugGame",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"BulletFarm Mac DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm Mac DebugGame Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"Mac",
+				"DebugGame",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm Mac Development Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"Mac",
+				"Development",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm Mac Development Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"Mac",
+				"Development",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"BulletFarm Mac Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm Mac Development Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"Mac",
+				"Development",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm Mac Test Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"Mac",
+				"Test",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm Mac Test Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"Mac",
+				"Test",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"BulletFarm Mac Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm Mac Test Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"Mac",
+				"Test",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm Mac Shipping Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"Mac",
+				"Shipping",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm Mac Shipping Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"Mac",
+				"Shipping",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"BulletFarm Mac Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm Mac Shipping Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"Mac",
+				"Shipping",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm IOS Debug Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"IOS",
+				"Debug",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm IOS Debug Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"IOS",
+				"Debug",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"BulletFarm IOS Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm IOS Debug Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"IOS",
+				"Debug",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm IOS DebugGame Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"IOS",
+				"DebugGame",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm IOS DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"IOS",
+				"DebugGame",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"BulletFarm IOS DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm IOS DebugGame Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"IOS",
+				"DebugGame",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm IOS Development Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"IOS",
+				"Development",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm IOS Development Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"IOS",
+				"Development",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"BulletFarm IOS Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm IOS Development Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"IOS",
+				"Development",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm IOS Test Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"IOS",
+				"Test",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm IOS Test Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"IOS",
+				"Test",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"BulletFarm IOS Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm IOS Test Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"IOS",
+				"Test",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm IOS Shipping Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"IOS",
+				"Shipping",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm IOS Shipping Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"IOS",
+				"Shipping",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"BulletFarm IOS Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarm IOS Shipping Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarm",
+				"IOS",
+				"Shipping",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarmEditor Mac Debug Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarmEditor",
+				"Mac",
+				"Debug",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarmEditor Mac Debug Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarmEditor",
+				"Mac",
+				"Debug",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"BulletFarmEditor Mac Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarmEditor Mac Debug Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarmEditor",
+				"Mac",
+				"Debug",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarmEditor Mac DebugGame Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarmEditor",
+				"Mac",
+				"DebugGame",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarmEditor Mac DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarmEditor",
+				"Mac",
+				"DebugGame",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"BulletFarmEditor Mac DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarmEditor Mac DebugGame Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarmEditor",
+				"Mac",
+				"DebugGame",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarmEditor Mac Development Build",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarmEditor",
+				"Mac",
+				"Development",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarmEditor Mac Development Rebuild",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarmEditor",
+				"Mac",
+				"Development",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"BulletFarmEditor Mac Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		},
+		{
+			"label": "BulletFarmEditor Mac Development Clean",
+			"group": "build",
+			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"args": [
+				"BulletFarmEditor",
+				"Mac",
+				"Development",
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-waitmutex",
+				"-clean"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "/Users/Shared/Epic Games/UE_5.1"
+			}
+		}
+	]
+}

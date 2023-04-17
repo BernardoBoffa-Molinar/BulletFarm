@@ -3,6 +3,7 @@
 #include "BulletFarmProjectile.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
+#include "ReactToBulletInterface.h"
 
 ABulletFarmProjectile::ABulletFarmProjectile() 
 {
@@ -33,11 +34,20 @@ ABulletFarmProjectile::ABulletFarmProjectile()
 
 void ABulletFarmProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	// Only add impulse and destroy projectile if we hit a physics
-	if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
+	if ((OtherActor != nullptr) && (OtherActor != this))
 	{
-		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
+		IReactToBulletInterface* reactingObject = Cast<IReactToBulletInterface>(OtherActor);
+		if (reactingObject != nullptr) {
+			reactingObject->OnBulletHit(type);
+		}
 
 		Destroy();
 	}
+	// Only add impulse and destroy projectile if we hit a physics
+	//if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
+	//{
+	//	OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
+	//
+	//	Destroy();
+	//}
 }
