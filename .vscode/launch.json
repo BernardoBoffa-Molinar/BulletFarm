@@ -1,0 +1,105 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Launch BulletFarm (Debug)",
+			"request": "launch",
+			"program": "/Users/davidsearle/Documents/Unreal Projects/BulletFarm/Binaries/Mac/UnrealGame-Mac-Debug.app/Contents/MacOS/UnrealGame-Mac-Debug",
+			"preLaunchTask": "BulletFarm Mac Debug Build",
+			"args": [
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_5.1",
+			"type": "lldb"
+		},
+		{
+			"name": "Launch BulletFarm (DebugGame)",
+			"request": "launch",
+			"program": "/Users/davidsearle/Documents/Unreal Projects/BulletFarm/Binaries/Mac/UnrealGame-Mac-DebugGame.app/Contents/MacOS/UnrealGame-Mac-DebugGame",
+			"preLaunchTask": "BulletFarm Mac DebugGame Build",
+			"args": [
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_5.1",
+			"type": "lldb"
+		},
+		{
+			"name": "Launch BulletFarm (Development)",
+			"request": "launch",
+			"program": "/Users/davidsearle/Documents/Unreal Projects/BulletFarm/Binaries/Mac/UnrealGame.app/Contents/MacOS/UnrealGame",
+			"preLaunchTask": "BulletFarm Mac Development Build",
+			"args": [
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_5.1",
+			"type": "lldb"
+		},
+		{
+			"name": "Launch BulletFarm (Test)",
+			"request": "launch",
+			"program": "/Users/davidsearle/Documents/Unreal Projects/BulletFarm/Binaries/Mac/UnrealGame-Mac-Test.app/Contents/MacOS/UnrealGame-Mac-Test",
+			"preLaunchTask": "BulletFarm Mac Test Build",
+			"args": [
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_5.1",
+			"type": "lldb"
+		},
+		{
+			"name": "Launch BulletFarm (Shipping)",
+			"request": "launch",
+			"program": "/Users/davidsearle/Documents/Unreal Projects/BulletFarm/Binaries/Mac/UnrealGame-Mac-Shipping.app/Contents/MacOS/UnrealGame-Mac-Shipping",
+			"preLaunchTask": "BulletFarm Mac Shipping Build",
+			"args": [
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_5.1",
+			"type": "lldb"
+		},
+		{
+			"name": "Launch BulletFarmEditor (Debug)",
+			"request": "launch",
+			"program": "/Users/Shared/Epic Games/UE_5.1/Engine/Binaries/Mac/UnrealEditor-Mac-Debug.app/Contents/MacOS/UnrealEditor-Mac-Debug",
+			"preLaunchTask": "BulletFarmEditor Mac Debug Build",
+			"args": [
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject"
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_5.1",
+			"type": "lldb"
+		},
+		{
+			"name": "Launch BulletFarmEditor (DebugGame)",
+			"request": "launch",
+			"program": "/Users/Shared/Epic Games/UE_5.1/Engine/Binaries/Mac/UnrealEditor-Mac-DebugGame.app/Contents/MacOS/UnrealEditor-Mac-DebugGame",
+			"preLaunchTask": "BulletFarmEditor Mac DebugGame Build",
+			"args": [
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject"
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_5.1",
+			"type": "lldb"
+		},
+		{
+			"name": "Launch BulletFarmEditor (Development)",
+			"request": "launch",
+			"program": "/Users/Shared/Epic Games/UE_5.1/Engine/Binaries/Mac/UnrealEditor.app/Contents/MacOS/UnrealEditor",
+			"preLaunchTask": "BulletFarmEditor Mac Development Build",
+			"args": [
+				"/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject"
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_5.1",
+			"type": "lldb"
+		},
+		{
+			"name": "Generate Project Files",
+			"type": "coreclr",
+			"request": "launch",
+			"program": "/Users/Shared/Epic Games/UE_5.1/Engine/Build/BatchFiles/RunUBT.bat",
+			"args": [
+				"-projectfiles",
+				"-vscode",
+				"-project=/Users/davidsearle/Documents/Unreal Projects/BulletFarm/BulletFarm.uproject",
+				"-game",
+				"-engine"
+			],
+			"console": "internalConsole",
+			"internalConsoleOptions": "openOnSessionStart",
+			"stopAtEntry": false,
+			"cwd": "/Users/Shared/Epic Games/UE_5.1"
+		}
+	]
+}

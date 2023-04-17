@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "BulletType.h"
 #include "BulletFarmProjectile.generated.h"
 
 class USphereComponent;
@@ -24,6 +25,9 @@ class ABulletFarmProjectile : public AActor
 
 public:
 	ABulletFarmProjectile();
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TEnumAsByte<BulletType> type;
 
 	/** called when projectile hits something */
 	UFUNCTION()
