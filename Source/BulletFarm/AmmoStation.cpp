@@ -11,6 +11,6 @@ AAmmoStation::AAmmoStation()
 }
 
 void AAmmoStation::OnInteract() {
-	GameData::RefillAmmo(ammoType);
+	
 }
 

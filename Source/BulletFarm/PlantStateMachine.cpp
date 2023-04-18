@@ -163,7 +163,8 @@ void APlantStateMachine::DecreasedPlantGrowingScore()
   PlantScore--;
   if(PlantScore<0)
   {
-    PlantScore = 0;
+    //Small Commit test
+    PlantScore = 0; 
   }
 }
 

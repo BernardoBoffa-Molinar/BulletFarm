@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "ReactToInteractInterface.h"
-#include "GameData.h"
+
 #include "AmmoStation.generated.h"
 
 UCLASS()
