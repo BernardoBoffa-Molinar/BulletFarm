@@ -3,6 +3,8 @@
 
 #include "PlantStateGrowingComponent.h"
 
+#include "PlantStateMachine.h"
+
 // Sets default values for this component's properties
 UPlantStateGrowingComponent::UPlantStateGrowingComponent()
 {
@@ -40,25 +42,25 @@ void UPlantStateGrowingComponent::SetPlantStateMachine(APlantStateMachine* Plant
 
 void UPlantStateGrowingComponent::OnStateEnter()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Yellow, TEXT("Entered Growing Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Emerald, TEXT("Entered Growing Plant State"));
 
 }
 
 void UPlantStateGrowingComponent::OnStateExit()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Red, TEXT("Exited Growing Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Emerald, TEXT("Exited Growing Plant State"));
 
 }
 
 void UPlantStateGrowingComponent::OnInteract()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Green, TEXT("Intereacted with Growing Plant State"));
-
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Emerald, TEXT("Intereacted with Growing Plant State"));
+	NeedSatisfied();
 }
 
 void UPlantStateGrowingComponent::OnBulletCollision(BulletType BulletType)
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Black, TEXT("Bullet Colision with Growing Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Emerald, TEXT("Bullet Colision with Growing Plant State"));
 	FString Debugmessage;
 
 	switch (BulletType) {
@@ -92,8 +94,8 @@ void UPlantStateGrowingComponent::OnBulletCollision(BulletType BulletType)
 
 void UPlantStateGrowingComponent::NeedSatisfied()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Purple, TEXT("Needs of Growing Plant State Satisfied"));
-
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Emerald, TEXT("Needs of Growing Plant State Satisfied"));
+	PlantStateMachine->SetState(PlantStateMachine->GetCompletePlantState());
 }
 
 FString UPlantStateGrowingComponent::NameToString()

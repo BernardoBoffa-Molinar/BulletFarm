@@ -41,6 +41,7 @@ private:
 
 
 	// plant score of growing
+	UPROPERTY()
 	int PlantScore =0;
 
 	float PlantTimer =  0.0f;

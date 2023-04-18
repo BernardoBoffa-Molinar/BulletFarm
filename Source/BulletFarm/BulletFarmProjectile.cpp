@@ -17,30 +17,37 @@ void ABulletFarmProjectile::BeginPlay()
 	case 0:
 		type = BulletType::Water;
 		Debugmessage = "I am a Water Bullet";
+		GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Cyan, Debugmessage  );
+
 		break;
 	case 1:
 		type = BulletType::Mud;
 		Debugmessage = "I am a Mud Bullet";
+		GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Turquoise, Debugmessage  );
 		break;
 	case 2:
 		type = BulletType::Seed;
 		Debugmessage = "I am a Seed Bullet";
+		GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::White, Debugmessage  );
 		break;
 	case 3:
 		type = BulletType::Pesticide;
 		Debugmessage = "I am a Pesticide Bullet";
+		GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Purple, Debugmessage  );
 		break;
 	case 4:
 		type = BulletType::Sun;
 		Debugmessage = "I am a Sun Bullet";
+		GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Yellow, Debugmessage  );
 		break;
 	case 5:
 		type = BulletType::Manure;
 		Debugmessage = "I am a Manure Bullet";
+		GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Silver, Debugmessage  );
 		break;
 	}
 
-	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::White, Debugmessage  );
+	
 	/* End of Remove*/
 }
 

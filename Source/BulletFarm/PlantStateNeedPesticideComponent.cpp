@@ -2,7 +2,7 @@
 
 
 #include "PlantStateNeedPesticideComponent.h"
-
+#include "PlantStateMachine.h"
 // Sets default values for this component's properties
 UPlantStateNeedPesticideComponent::UPlantStateNeedPesticideComponent()
 {
@@ -39,31 +39,42 @@ void UPlantStateNeedPesticideComponent::SetPlantStateMachine(APlantStateMachine*
 
 void UPlantStateNeedPesticideComponent::OnStateEnter()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Yellow, TEXT("Entered NeedWPesticide Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Purple, TEXT("Entered Need Pesticide Plant State"));
 
 }
 
 void UPlantStateNeedPesticideComponent::OnStateExit()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Red, TEXT("Exited NeedWPesticide Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Purple, TEXT("Exited Need Pesticide Plant State"));
 
 }
 
 void UPlantStateNeedPesticideComponent::OnInteract()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Green, TEXT("Intereacted with NeedWPesticide Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Purple, TEXT("Intereacted with Need Pesticide Plant State"));
 
 }
 
 void UPlantStateNeedPesticideComponent::OnBulletCollision(BulletType BulletType)
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Black, TEXT("Bullet Colision with NeedWPesticide Plant State"));
-
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Purple, TEXT("Bullet Colision with Need Pesticide Plant State"));
+	if( BulletType == BulletType::Pesticide)
+	{
+		NeedSatisfied();
+	}
+	else
+	{
+		// inform player the plant need Pesticide
+		//Interact in BP
+		PlantStateMachine->DecreasedPlantGrowingScore();
+	}
 }
 
 void UPlantStateNeedPesticideComponent::NeedSatisfied()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Purple, TEXT("Needs of NeedWPesticide Plant State Satisfied"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Purple, TEXT("Needs of Need Pesticide Plant State Satisfied"));
+	PlantStateMachine->IncreasedPlantGrowingScore();
+	PlantStateMachine->SetState(PlantStateMachine->GetGrowingPlantState());
 
 }
 

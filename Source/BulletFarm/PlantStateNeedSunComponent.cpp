@@ -2,7 +2,7 @@
 
 
 #include "PlantStateNeedSunComponent.h"
-
+#include "PlantStateMachine.h"
 // Sets default values for this component's properties
 UPlantStateNeedSunComponent::UPlantStateNeedSunComponent()
 {
@@ -38,31 +38,43 @@ void UPlantStateNeedSunComponent::SetPlantStateMachine(APlantStateMachine* Plant
 
 void UPlantStateNeedSunComponent::OnStateEnter()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Yellow, TEXT("Entered NeedSun Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Orange, TEXT("Entered NeedSun Plant State"));
 
 }
 
 void UPlantStateNeedSunComponent::OnStateExit()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Red, TEXT("Exited NeedSun Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Orange, TEXT("Exited NeedSun Plant State"));
 
 }
 
 void UPlantStateNeedSunComponent::OnInteract()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Green, TEXT("Intereacted with NeedSun Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Orange, TEXT("Intereacted with NeedSun Plant State"));
 
 }
 
 void UPlantStateNeedSunComponent::OnBulletCollision(BulletType BulletType)
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Black, TEXT("Bullet Colision with NeedSun Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Orange, TEXT("Bullet Colision with NeedSun Plant State"));
 
+	if( BulletType == BulletType::Sun)
+	{
+		NeedSatisfied();
+	}
+	else
+	{
+		// inform player the plant need Sun
+		//Interact in BP
+		PlantStateMachine->DecreasedPlantGrowingScore();
+	}
 }
 
 void UPlantStateNeedSunComponent::NeedSatisfied()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Purple, TEXT("Needs of NeedSun Plant State Satisfied"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Orange, TEXT("Needs of NeedSun Plant State Satisfied"));
+	PlantStateMachine->IncreasedPlantGrowingScore();
+	PlantStateMachine->SetState(PlantStateMachine->GetGrowingPlantState());
 
 }
 

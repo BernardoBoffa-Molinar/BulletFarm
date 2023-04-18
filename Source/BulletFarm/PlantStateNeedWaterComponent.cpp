@@ -2,7 +2,7 @@
 
 
 #include "PlantStateNeedWaterComponent.h"
-
+#include "PlantStateMachine.h"
 // Sets default values for this component's properties
 UPlantStateNeedWaterComponent::UPlantStateNeedWaterComponent()
 {
@@ -39,32 +39,42 @@ void UPlantStateNeedWaterComponent::SetPlantStateMachine(APlantStateMachine* Pla
 
 void UPlantStateNeedWaterComponent::OnStateEnter()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Yellow, TEXT("Entered NeedWater Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Cyan, TEXT("Entered NeedWater Plant State"));
 
 }
 
 void UPlantStateNeedWaterComponent::OnStateExit()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Red, TEXT("Exited NeedWater Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Cyan, TEXT("Exited NeedWater Plant State"));
 
 }
 
 void UPlantStateNeedWaterComponent::OnInteract()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Green, TEXT("Intereacted with NeedWater Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Cyan, TEXT("Intereacted with NeedWater Plant State"));
 
 }
 
 void UPlantStateNeedWaterComponent::OnBulletCollision(BulletType BulletType)
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Black, TEXT("Bullet Colision with NeedWater Plant State"));
-
+	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Cyan, TEXT("Bullet Colision with NeedWater Plant State"));
+	if( BulletType == BulletType::Water)
+	{
+		NeedSatisfied();
+	}
+	else
+	{
+		// inform player the plant need Sun
+		//Interact in BP
+		PlantStateMachine->DecreasedPlantGrowingScore();
+	}
 }
 
 void UPlantStateNeedWaterComponent::NeedSatisfied()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Purple, TEXT("Needs of NeedWater Plant State Satisfied"));
-
+	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Cyan, TEXT("Needs of NeedWater Plant State Satisfied"));
+	PlantStateMachine->IncreasedPlantGrowingScore();
+	PlantStateMachine->SetState(PlantStateMachine->GetGrowingPlantState());
 }
 
 FString UPlantStateNeedWaterComponent::NameToString()

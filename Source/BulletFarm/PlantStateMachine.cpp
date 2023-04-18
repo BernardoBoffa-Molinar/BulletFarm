@@ -36,11 +36,20 @@ void APlantStateMachine::Tick(float DeltaTime)
   if(CurrentState == GrowingState)
   {
     PlantTimer+= DeltaTime;
-    if(PlantTimer>=PlantCooldown)
+    if(PlantTimer>=PlantCooldown )
     {
-      CreatePlantNeed();
+      if(PlantScore<5)
+      {
+        CreatePlantNeed();
+      } else
+      {
+        CurrentState->NeedSatisfied();
+      }
+    
     }
+   
   }
+  
 
 
   
@@ -85,6 +94,7 @@ void APlantStateMachine::Initialization()
   NeedPesticideState->SetPlantStateMachine(this);
   
   SetState(BareState);
+  PlantScore =0;
 
 }
 
@@ -154,18 +164,19 @@ void APlantStateMachine::IncreasedPlantGrowingScore()
     PlantScore++;
   if(PlantScore>5)
   {
-    PlantScore = 5;
+    SetState(CompleteState);
   }
 }
 
 void APlantStateMachine::DecreasedPlantGrowingScore()
 {
+  /* Uncomment once we have Bullet switching proper
   PlantScore--;
   if(PlantScore<0)
   {
     //Small Commit test
     PlantScore = 0; 
-  }
+  }*/
 }
 
 void APlantStateMachine::CreatePlantNeed()
@@ -175,32 +186,22 @@ void APlantStateMachine::CreatePlantNeed()
   // Assign a random option to the variable based on the random index
   switch (index) {
     case 0:
-      //type = BulletType::Water;
-      //Debugmessage = "I am a Water Bullet";
       SetState(NeedWaterState);
     break;
     
     case 1:
-      //type = BulletType::Mud;
-      //Debugmessage = "I am a Mud Bullet";
       SetState(NeedMudState);
     break;
     
     case 2:
-      //type = BulletType::Sun;
-      //Debugmessage = "I am a Seed Bullet";
       SetState(NeedSunState);
     break;
     
     case 3:
-      //type = BulletType::Pesticide;
-      //Debugmessage = "I am a Pesticide Bullet";
       SetState(NeedPesticideState);
     break;
 
     case 4:
-      //type = BulletType::Manure;
-      //Debugmessage = "I am a Pesticide Bullet";
       SetState(NeedManureState);
     break;
     
@@ -229,13 +230,16 @@ void APlantStateMachine::OnBulletHit(TEnumAsByte<BulletType> typeofBullet)
     break;
   case Pesticide:
 	
-    Debugmessage = "Hit bya Pesticide Bullet";
+    Debugmessage = "Hit by a Pesticide Bullet";
     break;
   case Sun:
     Debugmessage = "Hit by a Sun Bullet";
     break;
+  case Manure:
+    Debugmessage = "Hit by a Manure Bullet";
+    break;
   }
-  GEngine->AddOnScreenDebugMessage(-1,10.f,FColor::Purple, Debugmessage );
+ // GEngine->AddOnScreenDebugMessage(-1,10.f,FColor::Green, Debugmessage );
 
  // GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Purple, this->GetCurrentStateName() );
 

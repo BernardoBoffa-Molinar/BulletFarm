@@ -38,24 +38,24 @@ void UPlantStateCompleteComponent::SetPlantStateMachine(APlantStateMachine* Plan
 
 void UPlantStateCompleteComponent::OnStateEnter()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Yellow, TEXT("Entered Complete Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Green, TEXT("Entered Complete Plant State"));
 }
 
 void UPlantStateCompleteComponent::OnStateExit()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Red, TEXT("Exited Complete Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Green, TEXT("Exited Complete Plant State"));
 
 }
 
 void UPlantStateCompleteComponent::OnInteract()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Green, TEXT("Intereacted with Complete Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Green, TEXT("Intereacted with Complete Plant State"));
 
 }
 
 void UPlantStateCompleteComponent::OnBulletCollision(BulletType BulletType)
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Black, TEXT("Bullet Colision with  Complete Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Green, TEXT("Bullet Colision with  Complete Plant State"));
 	FString Debugmessage;
 
 	switch (BulletType) {
@@ -67,7 +67,6 @@ void UPlantStateCompleteComponent::OnBulletCollision(BulletType BulletType)
 		break;
 	case Seed:
 		Debugmessage = "Hit by a Seed Bullet";
-		NeedSatisfied();
 		break;
 	case Pesticide:
 		Debugmessage = "Hit bya Pesticide Bullet";
@@ -80,7 +79,7 @@ void UPlantStateCompleteComponent::OnBulletCollision(BulletType BulletType)
 
 void UPlantStateCompleteComponent::NeedSatisfied()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Purple, TEXT("Needs of Complete Plant State Satisfied"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Green, TEXT("Needs of Complete Plant State Satisfied"));
 }
 
 FString UPlantStateCompleteComponent::NameToString()

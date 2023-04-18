@@ -2,7 +2,7 @@
 
 
 #include "PlantStateNeedMudComponent.h"
-
+#include "PlantStateMachine.h"
 // Sets default values for this component's properties
 UPlantStateNeedMudComponent::UPlantStateNeedMudComponent()
 {
@@ -40,30 +40,41 @@ void UPlantStateNeedMudComponent::SetPlantStateMachine(APlantStateMachine* Plant
 
 void UPlantStateNeedMudComponent::OnStateEnter()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Yellow, TEXT("Entered NeedMud Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Turquoise, TEXT("Entered NeedMud Plant State"));
 }
 
 void UPlantStateNeedMudComponent::OnStateExit()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Red, TEXT("Exited NeedMud Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Turquoise, TEXT("Exited NeedMud Plant State"));
 
 }
 
 void UPlantStateNeedMudComponent::OnInteract()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Green, TEXT("Intereacted with NeedMud Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Turquoise, TEXT("Intereacted with NeedMud Plant State"));
 
 }
 
 void UPlantStateNeedMudComponent::OnBulletCollision(BulletType BulletType)
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Black, TEXT("Bullet Colision with  NeedMud Plant State"));
-
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Turquoise, TEXT("Bullet Colision with  NeedMud Plant State"));
+	if( BulletType == BulletType::Mud)
+	{
+		NeedSatisfied();
+	}
+	else
+	{
+		// inform player the plant need Mud
+		//Interact in BP
+		PlantStateMachine->DecreasedPlantGrowingScore();
+	}
 }
 
 void UPlantStateNeedMudComponent::NeedSatisfied()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Purple, TEXT("Needs of NeedMud Plant State Satisfied"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Turquoise, TEXT("Needs of NeedMud Plant State Satisfied"));
+	PlantStateMachine->IncreasedPlantGrowingScore();
+	PlantStateMachine->SetState(PlantStateMachine->GetGrowingPlantState());
 }
 
 FString UPlantStateNeedMudComponent::NameToString()

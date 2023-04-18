@@ -42,24 +42,24 @@ void UPlantStateBareComponent::SetPlantStateMachine(APlantStateMachine* Plant)
 
 void UPlantStateBareComponent::OnStateEnter()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Yellow, TEXT("Entered Bare Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Red, TEXT("Entered Bare Plant State"));
 }
 
 void UPlantStateBareComponent::OnStateExit()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Red, TEXT("Exited Bare Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Red, TEXT("Exited Bare Plant State"));
 
 }
 
 void UPlantStateBareComponent::OnInteract()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Green, TEXT("Intereacted with Bare Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Red, TEXT("Intereacted with Bare Plant State"));
 
 }
 
 void UPlantStateBareComponent::OnBulletCollision(BulletType BulletType)
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Black, TEXT("Bullet Colision with  Bare Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Red, TEXT("Bullet Colision with  Bare Plant State"));
 	FString Debugmessage;
 
 	switch (BulletType) {
@@ -96,7 +96,7 @@ void UPlantStateBareComponent::OnBulletCollision(BulletType BulletType)
 
 void UPlantStateBareComponent::NeedSatisfied()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Purple, TEXT("Needs of Bare Plant State Satisfied"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Red, TEXT("Needs of Bare Plant State Satisfied"));
 	PlantStateMachine->SetState(PlantStateMachine->GetGrowingPlantState());
 }
 
