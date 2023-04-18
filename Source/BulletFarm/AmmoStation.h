@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "ReactToInteractInterface.h"
-#include "BulletFarmGameMode.h"
+#include "GameData.h"
 #include "AmmoStation.generated.h"
 
 UCLASS()
@@ -13,9 +13,6 @@ class BULLETFARM_API AAmmoStation : public AActor, public IReactToInteractInterf
 {
 	GENERATED_BODY()
 	
-private:
-	ABulletFarmGameMode* gameMode;
-
 public:	
 
 	UPROPERTY(EditAnywhere)
@@ -24,9 +21,5 @@ public:
 	// Sets default values for this actor's properties
 	AAmmoStation();
 	virtual void OnInteract() override;
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 
 };
