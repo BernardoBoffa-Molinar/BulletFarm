@@ -29,7 +29,7 @@ public:
 	virtual void OnInteract() =0;
 	// REPLACE WITH BULLET TYPE ENUM
 	virtual void OnBulletCollision(float BulletType ) =0 ;
-	virtual void NeedStatisfied() = 0;
+	virtual void NeedSatisfied() = 0;
 	virtual FString NameToString()=0;
 
 };

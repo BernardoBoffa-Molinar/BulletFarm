@@ -5,10 +5,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "PlantState.h"
+#include "ReactToBulletInterface.h"
 #include "PlantStateMachine.generated.h"
 
 UCLASS()
-class BULLETFARM_API APlantStateMachine : public AActor
+class BULLETFARM_API APlantStateMachine : public AActor, public IReactToBulletInterface
 {
 	GENERATED_BODY()
 	
@@ -18,8 +19,10 @@ public:
 
 private:
 	// Bare State of Plant State Machine
+	
 	IPlantState* BareState;
 	// Growing State of Plant State Machine
+	class 
 	IPlantState* GrowingState;
 	// Complete State of Plant State Machine
 	IPlantState* CompleteState;
@@ -39,18 +42,54 @@ private:
 
 
 	// plant score of growing
-	int GrowingScore =0;
+	int PlantGrowingScore =0;
 	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	FString GetCurrentStateName();
+	IPlantState* GetCurrentState();
+	IPlantState* GetBarePlantState();
+	IPlantState* GetGrowingPlantState();
+	IPlantState* GetCompletePlantState();
+	IPlantState* GetNeedMudPlantState();
+	IPlantState* GetNeedWaterPlantState();
+	IPlantState* GetNeedManurePlantState();
+	IPlantState* GetNeedSunPlantState();
+	IPlantState* GetNeedPesticidePlantState();
+	
+	// initialize all plant states
+	void Initialization();
+	void SetState(IPlantState* stateToSet);
+	
+	// overide IReactto On Bullet hit Interface function
+	virtual void OnBulletHit(TEnumAsByte<BulletType> type) override;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	class UPlantStateBareComponent* BareComponent;
 
-	// initialize all plant states
-	void Initialize();
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	class UPlantStateGrowingComponent* GrowingComponent;
 	
-	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	class UPlantStateCompleteComponent* CompleteComponent;
+
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	class UPlantStateNeedWaterComponent* NeedWaterComponent;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	class UPlantStateNeedMudComponent* NeedMudComponent;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	class UPlantStateNeedManureComponent* NeedManureComponent;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	class UPlantStateNeedPesticideComponent* NeedPesticideComponent;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	class UPlantStateNeedSunComponent* NeedSunComponent;
+
 };
