@@ -38,7 +38,7 @@ public:
 	virtual void OnStateEnter() override;
 	virtual void OnStateExit() override;
 	virtual void OnInteract() override;
-	virtual void OnBulletCollision(float BulletType) override;
+	virtual void OnBulletCollision(BulletType BulletType) override;
 	virtual void NeedSatisfied() override;
 	virtual FString NameToString() override;
 	

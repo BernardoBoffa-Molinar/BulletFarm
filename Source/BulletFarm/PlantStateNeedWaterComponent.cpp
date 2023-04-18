@@ -55,7 +55,7 @@ void UPlantStateNeedWaterComponent::OnInteract()
 
 }
 
-void UPlantStateNeedWaterComponent::OnBulletCollision(float BulletType)
+void UPlantStateNeedWaterComponent::OnBulletCollision(BulletType BulletType)
 {
 	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Black, TEXT("Bullet Colision with NeedWater Plant State"));
 

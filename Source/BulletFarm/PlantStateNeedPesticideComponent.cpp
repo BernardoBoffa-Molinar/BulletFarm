@@ -55,7 +55,7 @@ void UPlantStateNeedPesticideComponent::OnInteract()
 
 }
 
-void UPlantStateNeedPesticideComponent::OnBulletCollision(float BulletType)
+void UPlantStateNeedPesticideComponent::OnBulletCollision(BulletType BulletType)
 {
 	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Black, TEXT("Bullet Colision with NeedWPesticide Plant State"));
 

@@ -53,10 +53,29 @@ void UPlantStateCompleteComponent::OnInteract()
 
 }
 
-void UPlantStateCompleteComponent::OnBulletCollision(float BulletType)
+void UPlantStateCompleteComponent::OnBulletCollision(BulletType BulletType)
 {
 	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Black, TEXT("Bullet Colision with  Complete Plant State"));
+	FString Debugmessage;
 
+	switch (BulletType) {
+	case Water:
+		Debugmessage = "Hit by a Water Bullet";
+		break;
+	case Mud:
+		Debugmessage = "Hit by a Mud Bullet";
+		break;
+	case Seed:
+		Debugmessage = "Hit by a Seed Bullet";
+		NeedSatisfied();
+		break;
+	case Pesticide:
+		Debugmessage = "Hit bya Pesticide Bullet";
+		break;
+	case Sun:
+		Debugmessage = "Hit by a Sun Bullet";
+		break;
+	}
 }
 
 void UPlantStateCompleteComponent::NeedSatisfied()

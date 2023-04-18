@@ -54,7 +54,7 @@ void UPlantStateNeedSunComponent::OnInteract()
 
 }
 
-void UPlantStateNeedSunComponent::OnBulletCollision(float BulletType)
+void UPlantStateNeedSunComponent::OnBulletCollision(BulletType BulletType)
 {
 	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Black, TEXT("Bullet Colision with NeedSun Plant State"));
 

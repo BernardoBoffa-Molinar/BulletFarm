@@ -55,7 +55,7 @@ void UPlantStateNeedMudComponent::OnInteract()
 
 }
 
-void UPlantStateNeedMudComponent::OnBulletCollision(float BulletType)
+void UPlantStateNeedMudComponent::OnBulletCollision(BulletType BulletType)
 {
 	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Black, TEXT("Bullet Colision with  NeedMud Plant State"));
 

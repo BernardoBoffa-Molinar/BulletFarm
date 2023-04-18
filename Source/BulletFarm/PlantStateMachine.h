@@ -16,13 +16,13 @@ class BULLETFARM_API APlantStateMachine : public AActor, public IReactToBulletIn
 public:	
 	// Sets default values for this actor's properties
 	APlantStateMachine();
-
+	// CurrentState
+	IPlantState* CurrentState;
 private:
 	// Bare State of Plant State Machine
 	
 	IPlantState* BareState;
 	// Growing State of Plant State Machine
-	class 
 	IPlantState* GrowingState;
 	// Complete State of Plant State Machine
 	IPlantState* CompleteState;
@@ -37,17 +37,21 @@ private:
 	// Need Pesticide State of Plant State Machine
 	IPlantState* NeedPesticideState;
 
-	// CurrentState
-	IPlantState* CurrentState;
+	
 
 
 	// plant score of growing
-	int PlantGrowingScore =0;
-	
-protected:
+	int PlantScore =0;
+
+	float PlantTimer =  0.0f;
+	float PlantCooldown =  5.0f;
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	FString GetCurrentStateName();
+	
+public:
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 	IPlantState* GetCurrentState();
 	IPlantState* GetBarePlantState();
 	IPlantState* GetGrowingPlantState();
@@ -57,16 +61,19 @@ protected:
 	IPlantState* GetNeedManurePlantState();
 	IPlantState* GetNeedSunPlantState();
 	IPlantState* GetNeedPesticidePlantState();
+
+	void IncreasedPlantGrowingScore();
+	void DecreasedPlantGrowingScore();
+	void CreatePlantNeed();
 	
+	void SetState(IPlantState* stateToSet);
+protected:
 	// initialize all plant states
 	void Initialization();
-	void SetState(IPlantState* stateToSet);
-	
+	FString GetCurrentStateName();
 	// overide IReactto On Bullet hit Interface function
-	virtual void OnBulletHit(TEnumAsByte<BulletType> type) override;
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	virtual void OnBulletHit(TEnumAsByte<BulletType> typeofBullet) override;
+	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	class UPlantStateBareComponent* BareComponent;
 

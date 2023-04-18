@@ -5,6 +5,45 @@
 #include "Components/SphereComponent.h"
 #include "ReactToBulletInterface.h"
 
+void ABulletFarmProjectile::BeginPlay()
+{
+	Super::BeginPlay();
+
+	/* Remove when Bullet switching is implemented*/
+	int index= rand() % 6;
+	FString Debugmessage = "";
+	
+	switch (index) {
+	case 0:
+		type = BulletType::Water;
+		Debugmessage = "I am a Water Bullet";
+		break;
+	case 1:
+		type = BulletType::Mud;
+		Debugmessage = "I am a Mud Bullet";
+		break;
+	case 2:
+		type = BulletType::Seed;
+		Debugmessage = "I am a Seed Bullet";
+		break;
+	case 3:
+		type = BulletType::Pesticide;
+		Debugmessage = "I am a Pesticide Bullet";
+		break;
+	case 4:
+		type = BulletType::Sun;
+		Debugmessage = "I am a Sun Bullet";
+		break;
+	case 5:
+		type = BulletType::Manure;
+		Debugmessage = "I am a Manure Bullet";
+		break;
+	}
+
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::White, Debugmessage  );
+	/* End of Remove*/
+}
+
 ABulletFarmProjectile::ABulletFarmProjectile() 
 {
 	// Use a sphere as a simple collision representation
@@ -30,6 +69,17 @@ ABulletFarmProjectile::ABulletFarmProjectile()
 
 	// Die after 3 seconds by default
 	InitialLifeSpan = 3.0f;
+
+
+	
+
+	
+
+	
+
+	
+
+	
 }
 
 void ABulletFarmProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)

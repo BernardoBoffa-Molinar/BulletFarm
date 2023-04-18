@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
+#include "BulletType.h"
 #include "PlantState.generated.h"
 
 // This class does not need to be modified.
@@ -28,7 +29,7 @@ public:
 	virtual void OnStateExit()=0;
 	virtual void OnInteract() =0;
 	// REPLACE WITH BULLET TYPE ENUM
-	virtual void OnBulletCollision(float BulletType ) =0 ;
+	virtual void OnBulletCollision(BulletType BulletType ) =0 ;
 	virtual void NeedSatisfied() = 0;
 	virtual FString NameToString()=0;
 

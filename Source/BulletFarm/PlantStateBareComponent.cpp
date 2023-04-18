@@ -3,6 +3,8 @@
 
 #include "PlantStateBareComponent.h"
 
+#include "PlantStateMachine.h"
+
 // Sets default values for this component's properties
 UPlantStateBareComponent::UPlantStateBareComponent()
 {
@@ -55,15 +57,47 @@ void UPlantStateBareComponent::OnInteract()
 
 }
 
-void UPlantStateBareComponent::OnBulletCollision(float BulletType)
+void UPlantStateBareComponent::OnBulletCollision(BulletType BulletType)
 {
 	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Black, TEXT("Bullet Colision with  Bare Plant State"));
+	FString Debugmessage;
 
+	switch (BulletType) {
+		case Water:
+			Debugmessage = "Hit by a Water Bullet";
+		break;
+		
+		case Mud:
+			Debugmessage = "Hit by a Mud Bullet";
+		break;
+
+		case Seed:
+			Debugmessage = "Hit by a Seed Bullet";
+			NeedSatisfied();
+		break;
+		
+		case Pesticide:
+			Debugmessage = "Hit bya Pesticide Bullet";
+		break;
+
+		case Sun:
+			Debugmessage = "Hit by a Sun Bullet";
+		break;
+
+		case Manure:
+			Debugmessage = "Hit by a Manure Bullet";
+		break;
+	}
+	
+
+
+	
 }
 
 void UPlantStateBareComponent::NeedSatisfied()
 {
 	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Purple, TEXT("Needs of Bare Plant State Satisfied"));
+	PlantStateMachine->SetState(PlantStateMachine->GetGrowingPlantState());
 }
 
 FString UPlantStateBareComponent::NameToString()

@@ -6,6 +6,11 @@
 #include "PlantStateBareComponent.h"
 #include "PlantStateCompleteComponent.h"
 #include "PlantStateGrowingComponent.h"
+#include "PlantStateNeedManureComponent.h"
+#include "PlantStateNeedMudComponent.h"
+#include "PlantStateNeedPesticideComponent.h"
+#include "PlantStateNeedSunComponent.h"
+#include "PlantStateNeedWaterComponent.h"
 
 
 // Sets default values
@@ -28,6 +33,17 @@ void APlantStateMachine::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+  if(CurrentState == GrowingState)
+  {
+    PlantTimer+= DeltaTime;
+    if(PlantTimer>=PlantCooldown)
+    {
+      CreatePlantNeed();
+    }
+  }
+
+
+  
 }
 
 
@@ -36,37 +52,40 @@ void APlantStateMachine::Initialization()
 
   BareComponent = NewObject<UPlantStateBareComponent>(this);
   BareState = Cast<IPlantState>(BareComponent);
-  CompleteComponent = NewObject<UPlantStateCompleteComponent>(this);
-  CompleteState = Cast<IPlantState>(CompleteComponent);
-
+  BareState->SetPlantStateMachine(this);
+  
   GrowingComponent = NewObject<UPlantStateGrowingComponent>(this);
   GrowingState = Cast<IPlantState>(GrowingComponent);
-
-
+  GrowingState->SetPlantStateMachine(this);
   
-  //BareStateComponet = NewObject<UCPP_BareStateComponet>(this);
-  //BareState = Cast<IPlantState>(BareStateComponet);
-  //BareState = CreateDefaultSubobject<UCPP_BareStateComponet>(TEXT("BareStateComponent"));
-  //BareStateActor = NewObject<UChildActorComponent>(this);
-  //BareStateActor->bEditableWhenInherited = true;
-  //BareStateActor->RegisterComponent();
-  //BareStateActor->SetChildActorClass(ABarePlantState::StaticClass());
+  CompleteComponent = NewObject<UPlantStateCompleteComponent>(this);
+  CompleteState = Cast<IPlantState>(CompleteComponent);
+  CompleteState->SetPlantStateMachine(this);
 
-  //BareState = Cast<ABarePlantState>(BareStateActor);
- 
-  //BareState = GetWorld()->SpawnActor<ABarePlantState>(ABarePlantState::StaticClass());
-  //Cast<AActor>(BareState)->SetActorLocation(GetActorLocation());
-  //Cast<AActor>(BareState)->Rename(TEXT("Bare StateActor"), this, REN_None);
-  //Cast<AActor>(BareState)->AttachToActor(this, FAttachmentTransformRules::KeepWorldTransform);
 
-  //Cast<AActor>(BareState)->Rename(TEXT("BareState"), this, REN_None);
-  //Cast<AActor>(this)->Children.Add(Cast<AActor>(BareState));
-  //Cast<AActor>(BareState)->AttachToActor(this,FAttachmentTransformRules::KeepRelativeTransform);
- 
-   //BareState->AttachToActor(this, FAttachmentTransformRules::KeepWorldTransform);
+
+  NeedWaterComponent = NewObject<UPlantStateNeedWaterComponent>(this);
+  NeedWaterState = Cast<IPlantState>(NeedWaterComponent);
+  NeedWaterState->SetPlantStateMachine(this);
+
+  NeedMudComponent = NewObject<UPlantStateNeedMudComponent>(this);
+  NeedMudState = Cast<IPlantState>(NeedMudComponent);
+  NeedMudState->SetPlantStateMachine(this);
+
+  NeedSunComponent = NewObject<UPlantStateNeedSunComponent>(this);
+  NeedSunState = Cast<IPlantState>(NeedSunComponent);
+  NeedSunState->SetPlantStateMachine(this);
+
+  NeedManureComponent = NewObject<UPlantStateNeedManureComponent>(this);
+  NeedManureState = Cast<IPlantState>(NeedManureComponent);
+  NeedManureState->SetPlantStateMachine(this);
+
+  NeedPesticideComponent = NewObject<UPlantStateNeedPesticideComponent>(this);
+  NeedPesticideState = Cast<IPlantState>(NeedPesticideComponent);
+  NeedPesticideState->SetPlantStateMachine(this);
+  
   SetState(BareState);
-  SetState(GrowingState);
-  SetState(CompleteState);
+
 }
 
 void APlantStateMachine::SetState(IPlantState* stateToSet)
@@ -130,16 +149,96 @@ IPlantState* APlantStateMachine::GetNeedPesticidePlantState()
   return NeedPesticideState;
 }
 
+void APlantStateMachine::IncreasedPlantGrowingScore()
+{
+    PlantScore++;
+  if(PlantScore>5)
+  {
+    PlantScore = 5;
+  }
+}
+
+void APlantStateMachine::DecreasedPlantGrowingScore()
+{
+  PlantScore--;
+  if(PlantScore<0)
+  {
+    PlantScore = 0;
+  }
+}
+
+void APlantStateMachine::CreatePlantNeed()
+{
+  int index= rand() % 5;
+    
+  // Assign a random option to the variable based on the random index
+  switch (index) {
+    case 0:
+      //type = BulletType::Water;
+      //Debugmessage = "I am a Water Bullet";
+      SetState(NeedWaterState);
+    break;
+    
+    case 1:
+      //type = BulletType::Mud;
+      //Debugmessage = "I am a Mud Bullet";
+      SetState(NeedMudState);
+    break;
+    
+    case 2:
+      //type = BulletType::Sun;
+      //Debugmessage = "I am a Seed Bullet";
+      SetState(NeedSunState);
+    break;
+    
+    case 3:
+      //type = BulletType::Pesticide;
+      //Debugmessage = "I am a Pesticide Bullet";
+      SetState(NeedPesticideState);
+    break;
+
+    case 4:
+      //type = BulletType::Manure;
+      //Debugmessage = "I am a Pesticide Bullet";
+      SetState(NeedManureState);
+    break;
+    
+  }
+
+  PlantTimer = 0;
+  
+}
 
 
-void APlantStateMachine::OnBulletHit(TEnumAsByte<BulletType> type)
+void APlantStateMachine::OnBulletHit(TEnumAsByte<BulletType> typeofBullet)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Bullet Hit the Plant!"));
-  
+  FString Debugmessage ="";
+  switch (typeofBullet) {
+  case Water:
+    Debugmessage = "Hit by a Water Bullet";
+    break;
+  case Mud:
+	
+    Debugmessage = "Hit by a Mud Bullet";
+    break;
+  case Seed:
+	
+    Debugmessage = "Hit by a Seed Bullet";
+    break;
+  case Pesticide:
+	
+    Debugmessage = "Hit bya Pesticide Bullet";
+    break;
+  case Sun:
+    Debugmessage = "Hit by a Sun Bullet";
+    break;
+  }
+  GEngine->AddOnScreenDebugMessage(-1,10.f,FColor::Purple, Debugmessage );
 
-  GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Purple, this->GetCurrentStateName() );
+ // GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Purple, this->GetCurrentStateName() );
 
-  
+  CurrentState->OnBulletCollision(typeofBullet);
 	//IReactToBulletInterface::OnBulletHit(type);
 }
 

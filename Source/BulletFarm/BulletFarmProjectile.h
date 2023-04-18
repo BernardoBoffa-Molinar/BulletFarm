@@ -23,10 +23,14 @@ class ABulletFarmProjectile : public AActor
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
 	UProjectileMovementComponent* ProjectileMovement;
 
+
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+	
 public:
 	ABulletFarmProjectile();
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TEnumAsByte<BulletType> type;
 
 	/** called when projectile hits something */
@@ -37,5 +41,8 @@ public:
 	USphereComponent* GetCollisionComp() const { return CollisionComp; }
 	/** Returns ProjectileMovement subobject **/
 	UProjectileMovementComponent* GetProjectileMovement() const { return ProjectileMovement; }
+
+
+	
 };
 
