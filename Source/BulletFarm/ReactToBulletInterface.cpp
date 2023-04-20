@@ -2,7 +2,3 @@
 
 
 #include "ReactToBulletInterface.h"
-
-void IReactToBulletInterface::OnBulletHit(TEnumAsByte<BulletType> type) {
-    
-}

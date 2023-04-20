@@ -10,7 +10,7 @@ AAmmoStation::AAmmoStation()
 
 }
 
-void AAmmoStation::OnInteract() {
+void AAmmoStation::OnInteract_Implementation() {
 	
 }
 

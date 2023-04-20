@@ -14,5 +14,6 @@ class IReactToBulletInterface
     GENERATED_BODY()
 
 public:
-    virtual void OnBulletHit(TEnumAsByte<BulletType> type);
+    UFUNCTION(BlueprintNativeEvent)
+    void OnBulletHit(TEnumAsByte<BulletType>& type);
 };

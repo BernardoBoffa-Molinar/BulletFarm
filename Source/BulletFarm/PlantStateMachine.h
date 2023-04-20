@@ -72,8 +72,9 @@ protected:
 	// initialize all plant states
 	void Initialization();
 	FString GetCurrentStateName();
-	// overide IReactto On Bullet hit Interface function
-	virtual void OnBulletHit(TEnumAsByte<BulletType> typeofBullet) override;
+	
+	UFUNCTION(BlueprintNativeEvent)
+	void OnBulletHit(TEnumAsByte<BulletType>& typeofBullet); virtual void OnBulletHit_Implementation(TEnumAsByte<BulletType>& typeofBullet);
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	class UPlantStateBareComponent* BareComponent;

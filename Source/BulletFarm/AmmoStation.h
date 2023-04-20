@@ -20,6 +20,8 @@ public:
 
 	// Sets default values for this actor's properties
 	AAmmoStation();
-	virtual void OnInteract() override;
+
+	UFUNCTION(BlueprintNativeEvent)
+	void OnInteract(); virtual void OnInteract_Implementation() override;
 
 };

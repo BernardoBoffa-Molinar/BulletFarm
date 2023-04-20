@@ -11,7 +11,7 @@ ABulletHitTest::ABulletHitTest()
 
 }
 
-void ABulletHitTest::OnBulletHit(TEnumAsByte<BulletType> type) {
+void ABulletHitTest::OnBulletHit_Implementation(TEnumAsByte<BulletType>& type) {
 	UE_LOG(LogTemp, Warning, TEXT("Hit!"));
 }
 

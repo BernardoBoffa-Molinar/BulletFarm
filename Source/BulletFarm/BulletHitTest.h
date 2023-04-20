@@ -15,7 +15,9 @@ class BULLETFARM_API ABulletHitTest : public AActor, public IReactToBulletInterf
 public:	
 	// Sets default values for this actor's properties
 	ABulletHitTest();
-	virtual void OnBulletHit(TEnumAsByte<BulletType> type) override;
+
+	UFUNCTION(BlueprintNativeEvent)
+	void OnBulletHit(TEnumAsByte<BulletType>& type); virtual void OnBulletHit_Implementation(TEnumAsByte<BulletType>& type);
 
 protected:
 	// Called when the game starts or when spawned

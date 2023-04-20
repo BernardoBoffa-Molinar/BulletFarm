@@ -2,7 +2,3 @@
 
 
 #include "ReactToInteractInterface.h"
-
-void IReactToInteractInterface::OnInteract() {
-
-}

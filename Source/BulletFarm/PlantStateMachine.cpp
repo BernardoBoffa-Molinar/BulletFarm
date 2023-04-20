@@ -212,7 +212,7 @@ void APlantStateMachine::CreatePlantNeed()
 }
 
 
-void APlantStateMachine::OnBulletHit(TEnumAsByte<BulletType> typeofBullet)
+void APlantStateMachine::OnBulletHit_Implementation(TEnumAsByte<BulletType>& typeofBullet)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Bullet Hit the Plant!"));
   FString Debugmessage ="";

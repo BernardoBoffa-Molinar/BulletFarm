@@ -14,5 +14,7 @@ class IReactToInteractInterface
     GENERATED_BODY()
 
 public:
-    virtual void OnInteract();
+
+    UFUNCTION(BlueprintNativeEvent)
+    void OnInteract();
 };

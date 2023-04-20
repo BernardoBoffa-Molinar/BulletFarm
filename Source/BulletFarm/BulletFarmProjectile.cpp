@@ -95,7 +95,7 @@ void ABulletFarmProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherAct
 	{
 		IReactToBulletInterface* reactingObject = Cast<IReactToBulletInterface>(OtherActor);
 		if (reactingObject != nullptr) {
-			reactingObject->OnBulletHit(type);
+			reactingObject->Execute_OnBulletHit(OtherActor, type);
 		}
 
 		Destroy();
