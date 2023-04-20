@@ -4,6 +4,8 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
 #include "ReactToBulletInterface.h"
+#include <Kismet/GameplayStatics.h>
+#include "Kismet/KismetSystemLibrary.h"
 
 void ABulletFarmProjectile::BeginPlay()
 {
@@ -47,6 +49,8 @@ void ABulletFarmProjectile::BeginPlay()
 		break;
 	}
 
+	UStaticMeshComponent* staticMesh = this->FindComponentByClass<UStaticMeshComponent>();
+	staticMesh->SetMaterial(0, bulletDatas[index].bulletMat);
 	
 	/* End of Remove*/
 }
@@ -76,14 +80,6 @@ ABulletFarmProjectile::ABulletFarmProjectile()
 
 	// Die after 3 seconds by default
 	InitialLifeSpan = 3.0f;
-
-
-	
-
-	
-
-	
-
 	
 
 	
@@ -98,6 +94,7 @@ void ABulletFarmProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherAct
 			reactingObject->Execute_OnBulletHit(OtherActor, type);
 		}
 
+		UParticleSystemComponent* particles = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), bulletDatas[(int32)type].bulletParticles, GetTransform());
 		Destroy();
 	}
 	// Only add impulse and destroy projectile if we hit a physics

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "BulletType.h"
+#include "BulletData.h"
 #include "BulletFarmProjectile.generated.h"
 
 class USphereComponent;
@@ -23,7 +24,6 @@ class ABulletFarmProjectile : public AActor
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
 	UProjectileMovementComponent* ProjectileMovement;
 
-
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
@@ -33,6 +33,9 @@ public:
 	//UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TEnumAsByte<BulletType> type;
 
+	UPROPERTY(EditAnywhere)
+	TArray<FBulletData> bulletDatas;
+	
 	/** called when projectile hits something */
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
