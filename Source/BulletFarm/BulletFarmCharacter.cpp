@@ -77,6 +77,11 @@ void ABulletFarmCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 
 		//Looking
 		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this, &ABulletFarmCharacter::Interact);
+
+		//Sprinting
+		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Triggered, this, &ABulletFarmCharacter::BeginSprint);
+		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Completed, this, &ABulletFarmCharacter::EndSprint);
+		
 	}
 }
 
@@ -164,4 +169,15 @@ bool ABulletFarmCharacter::DoTrace(FHitResult* RV_Hit, FCollisionQueryParams* RV
 		);
 
 	return DidTrace;
+}
+
+void ABulletFarmCharacter::BeginSprint()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 1200.0f;
+	
+}
+
+void ABulletFarmCharacter::EndSprint()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 600.0f;
 }

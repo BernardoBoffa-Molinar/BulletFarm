@@ -40,6 +40,9 @@ class ABulletFarmCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	class UInputAction* MoveAction;
 
+	/** Jump Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	class UInputAction* SprintAction;
 	
 public:
 	ABulletFarmCharacter();
@@ -91,6 +94,11 @@ protected:
 
 	bool DoTrace(FHitResult* RV_Hit, FCollisionQueryParams* RV_TraceParams);
 
+	void BeginSprint();
+
+	void EndSprint();
+	
+
 public:
 	/** Returns Mesh1P subobject **/
 	USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
@@ -100,5 +108,8 @@ public:
 	UPROPERTY()
 	UCharacterMovementComponent* CharacterMovementComponent;
 
+
+
+	
 };
 
