@@ -5,8 +5,13 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "PlantState.h"
+
 #include "ReactToBulletInterface.h"
 #include "PlantStateMachine.generated.h"
+
+
+DECLARE_EVENT(APlantStateMachine,ShapeChangeEvent)
+DECLARE_EVENT(APlantStateMachine,InteractEvent)
 
 UCLASS()
 class BULLETFARM_API APlantStateMachine : public AActor, public IReactToBulletInterface
@@ -43,7 +48,7 @@ private:
 
 protected:
 	// plant score of growing
-	UPROPERTY(BlueprintReadOnly, Category ="PlantInfo")
+	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category ="PlantInfo")
 	int PlantScore =0;
 
 	float PlantTimer =  0.0f;
@@ -75,7 +80,7 @@ protected:
 	void Initialization();
 	FString GetCurrentStateName();
 	
-	UFUNCTION(BlueprintNativeEvent)
+	//UFUNCTION(BlueprintNativeEvent)
 	void OnBulletHit(TEnumAsByte<BulletType>& typeofBullet); virtual void OnBulletHit_Implementation(TEnumAsByte<BulletType>& typeofBullet);
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
@@ -103,8 +108,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	class UPlantStateNeedSunComponent* NeedSunComponent;
 
-
-
-	UFUNCTION(BlueprintImplementableEvent)
-	void ChangePlant();
+	//UPROPERTY(BlueprintAssignable)
+	//ShapeChangeEvent ShapeControlEvent;
+	//UPROPERTY(BlueprintAssignable)
+	//InteractEvent PlantInterected;
+	//InteractEvent PlantInterected;
 };
