@@ -10,8 +10,7 @@
 #include "PlantStateMachine.generated.h"
 
 
-DECLARE_EVENT(APlantStateMachine,ShapeChangeEvent)
-DECLARE_EVENT(APlantStateMachine,InteractEvent)
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FChangeShapeEvent);
 
 UCLASS()
 class BULLETFARM_API APlantStateMachine : public AActor, public IReactToBulletInterface
@@ -113,4 +112,6 @@ protected:
 	//UPROPERTY(BlueprintAssignable)
 	//InteractEvent PlantInterected;
 	//InteractEvent PlantInterected;
+	UPROPERTY(BlueprintAssignable)
+	FChangeShapeEvent OnChangeShapeEvent;
 };
