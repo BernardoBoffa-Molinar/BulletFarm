@@ -7,6 +7,7 @@
 #include "Components/CapsuleComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "ReactToInteractInterface.h"
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -72,7 +73,7 @@ void ABulletFarmCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ABulletFarmCharacter::Look);
 
 		//Looking
-		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Started, this, &ABulletFarmCharacter::Interact);
+		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this, &ABulletFarmCharacter::Interact);
 	}
 }
 
@@ -104,7 +105,16 @@ void ABulletFarmCharacter::Look(const FInputActionValue& Value)
 }
 
 void ABulletFarmCharacter::Interact() {
-
+	//GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Emerald, TEXT("Try Raycast"));
+	FHitResult RV_Hit(ForceInit);
+	FCollisionQueryParams RV_TraceParams = FCollisionQueryParams(FName(TEXT("RV_Trace")), true, this);
+	if (DoTrace(&RV_Hit, &RV_TraceParams)) {
+		GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Emerald, TEXT("Raycast Hit"));
+		IReactToInteractInterface* reactingObject = Cast<IReactToInteractInterface>(RV_Hit.GetActor());
+		if (reactingObject != nullptr) {
+			reactingObject->Execute_OnInteract(RV_Hit.GetActor());
+		}
+	}
 }
 
 void ABulletFarmCharacter::SetHasRifle(bool bNewHasRifle)
@@ -115,4 +125,36 @@ void ABulletFarmCharacter::SetHasRifle(bool bNewHasRifle)
 bool ABulletFarmCharacter::GetHasRifle()
 {
 	return bHasRifle;
+}
+
+bool ABulletFarmCharacter::DoTrace(FHitResult* RV_Hit, FCollisionQueryParams* RV_TraceParams)
+{
+	if (Controller == NULL) // access the controller, make sure we have one
+	{
+		return false;
+	}
+
+	// get the camera transform
+	FVector CameraLoc;
+	FRotator CameraRot;
+	GetActorEyesViewPoint(CameraLoc, CameraRot);
+
+	FVector Start = CameraLoc;
+    // you need to add a uproperty to the header file for a float PlayerInteractionDistance
+	FVector End = CameraLoc + (CameraRot.Vector() * 200);
+
+	RV_TraceParams->bTraceComplex = true;
+	//RV_TraceParams->bTraceAsyncScene = true;
+	RV_TraceParams->bReturnPhysicalMaterial = true;
+
+	//  do the line trace
+	bool DidTrace = GetWorld()->LineTraceSingleByChannel(
+		*RV_Hit,		//result
+		Start,		//start
+		End,		//end
+		ECC_Visibility,	//collision channel
+		*RV_TraceParams
+		);
+
+	return DidTrace;
 }

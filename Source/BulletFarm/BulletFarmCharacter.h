@@ -89,6 +89,8 @@ protected:
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 	// End of APawn interface
 
+	bool DoTrace(FHitResult* RV_Hit, FCollisionQueryParams* RV_TraceParams);
+
 public:
 	/** Returns Mesh1P subobject **/
 	USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
