@@ -8,6 +8,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "ReactToInteractInterface.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -37,6 +38,8 @@ ABulletFarmCharacter::ABulletFarmCharacter()
 	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
 
 	bulletCounts.Init(bulletCapacity, 6);
+
+	//CharacterMovementComponent = Cast<ACharacter>(this)->GetCharacterMovement();
 }
 
 void ABulletFarmCharacter::BeginPlay()
@@ -85,6 +88,10 @@ void ABulletFarmCharacter::Move(const FInputActionValue& Value)
 
 	if (Controller != nullptr)
 	{
+		//Cast<ACharacter>(this)->GetCharacterMovement()
+		
+		//CharacterMovementComponent->MaxWalkSpeed
+		
 		// add movement 
 		AddMovementInput(GetActorForwardVector(), MovementVector.Y);
 		AddMovementInput(GetActorRightVector(), MovementVector.X);

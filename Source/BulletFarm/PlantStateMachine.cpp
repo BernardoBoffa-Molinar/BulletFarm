@@ -105,7 +105,7 @@ void APlantStateMachine::SetState(IPlantState* stateToSet)
     CurrentState->OnStateExit();
   }
   CurrentState = stateToSet;
-  //ShapeControlEvent.Broadcast();
+  OnChangeShapeEvent.Broadcast();
   CurrentState->OnStateEnter();
 }
 
@@ -162,7 +162,7 @@ IPlantState* APlantStateMachine::GetNeedPesticidePlantState()
 void APlantStateMachine::IncreasedPlantGrowingScore()
 {
     PlantScore++;
-
+  OnChangeShapeEvent.Broadcast();
   if(PlantScore>5)
   {
     SetState(CompleteState);
@@ -171,7 +171,8 @@ void APlantStateMachine::IncreasedPlantGrowingScore()
 
 void APlantStateMachine::DecreasedPlantGrowingScore()
 {
- // ShapeControlEvent.Broadcast();
+  OnChangeShapeEvent.Broadcast();
+
   /* Uncomment once we have Bullet switching proper
   PlantScore--;
   if(PlantScore<0)
