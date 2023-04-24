@@ -13,15 +13,16 @@ AAmmoStation::AAmmoStation()
 }
 
 void AAmmoStation::OnInteract_Implementation() {
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Emerald, TEXT("Ammo Station Hit"));
 	ABulletFarmCharacter* player = (ABulletFarmCharacter*)UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
 	if (player != nullptr) {
 		player->bulletCounts[(int32)ammoType] = player->bulletCapacity;
 	}
 
 	// Try and play the sound if specified
-	if (fireSound != nullptr)
+	if (RestockSound != nullptr)
 	{
-		UGameplayStatics::PlaySoundAtLocation(this, fireSound, this->GetActorLocation());
+		UGameplayStatics::PlaySoundAtLocation(this, RestockSound, this->GetActorLocation());
 	}
 }
 
