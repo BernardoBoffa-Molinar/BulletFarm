@@ -39,7 +39,7 @@ ABulletFarmCharacter::ABulletFarmCharacter()
 
 	bulletCounts.Init(bulletCapacity, 6);
 
-	CharacterMovement = Cast<ACharacter>(this)->GetCharacterMovement();
+	//CharacterMovementComponent = Cast<ACharacter>(this)->GetCharacterMovement();
 }
 
 void ABulletFarmCharacter::BeginPlay()
@@ -88,9 +88,9 @@ void ABulletFarmCharacter::Move(const FInputActionValue& Value)
 
 	if (Controller != nullptr)
 	{
-		Cast<ACharacter>(this)->GetCharacterMovement()
+		//Cast<ACharacter>(this)->GetCharacterMovement()
 		
-	CharacterMovement->MaxWalkSpeed
+		//CharacterMovementComponent->MaxWalkSpeed
 		
 		// add movement 
 		AddMovementInput(GetActorForwardVector(), MovementVector.Y);

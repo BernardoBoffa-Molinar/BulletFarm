@@ -98,7 +98,7 @@ public:
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
 	UPROPERTY()
-	UCharacterMovementComponent* CharacterMovement;
+	UCharacterMovementComponent* CharacterMovementComponent;
 
 };
 
