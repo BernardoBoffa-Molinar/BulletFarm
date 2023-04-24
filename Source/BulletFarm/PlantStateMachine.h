@@ -39,9 +39,11 @@ private:
 
 	
 
+    
 
+protected:
 	// plant score of growing
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly, Category ="PlantInfo")
 	int PlantScore =0;
 
 	float PlantTimer =  0.0f;
@@ -101,4 +103,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	class UPlantStateNeedSunComponent* NeedSunComponent;
 
+
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void ChangePlant();
 };
