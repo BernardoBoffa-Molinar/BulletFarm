@@ -2,7 +2,7 @@
 
 
 #include "AmmoStation.h"
-#include "BulletFarmCharacter.h";
+#include "BulletFarmCharacter.h"
 #include <Kismet/GameplayStatics.h>
 
 // Sets default values
