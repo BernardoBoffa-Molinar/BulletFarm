@@ -72,7 +72,7 @@ void ABulletFarmCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ABulletFarmCharacter::Look);
 
 		//Looking
-		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Start, this, &ABulletFarmCharacter::Interact);
+		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Started, this, &ABulletFarmCharacter::Interact);
 	}
 }
 

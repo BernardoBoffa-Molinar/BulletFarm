@@ -21,7 +21,7 @@ void AAmmoStation::OnInteract_Implementation() {
 	// Try and play the sound if specified
 	if (fireSound != nullptr)
 	{
-		UGameplayStatics::PlaySoundAtLocation(this, fireSound, Character->GetActorLocation());
+		UGameplayStatics::PlaySoundAtLocation(this, fireSound, this->GetActorLocation());
 	}
 }
 
