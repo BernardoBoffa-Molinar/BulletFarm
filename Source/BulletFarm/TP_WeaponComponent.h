@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "BulletType.h"
 #include "TP_WeaponComponent.generated.h"
 
 class ABulletFarmCharacter;
@@ -41,6 +42,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	class UInputAction* FireAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	class UInputAction* SwapAmmoLeftAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	class UInputAction* SwapAmmoRightAction;
+
 	/** Sets default values for this component's properties */
 	UTP_WeaponComponent();
 
@@ -52,6 +59,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Weapon")
 	void Fire();
 
+	UFUNCTION(BlueprintCallable, Category="Weapon")
+	void SwapAmmoLeft();
+
+	UFUNCTION(BlueprintCallable, Category="Weapon")
+	void SwapAmmoRight();
+
 protected:
 	/** Ends gameplay for this component. */
 	UFUNCTION()
@@ -60,4 +73,6 @@ protected:
 private:
 	/** The Character holding this weapon*/
 	ABulletFarmCharacter* Character;
+
+	TEnumAsByte<BulletType> selectedAmmo;
 };
