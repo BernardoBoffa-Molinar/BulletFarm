@@ -18,6 +18,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	TEnumAsByte<BulletType> ammoType;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
+	USoundBase* fireSound;
+
 	// Sets default values for this actor's properties
 	AAmmoStation();
 

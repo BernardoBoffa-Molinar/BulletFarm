@@ -35,6 +35,7 @@ ABulletFarmCharacter::ABulletFarmCharacter()
 	//Mesh1P->SetRelativeRotation(FRotator(0.9f, -19.19f, 5.2f));
 	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
 
+	bulletCounts.Init(bulletCapacity, 6);
 }
 
 void ABulletFarmCharacter::BeginPlay()
@@ -69,6 +70,9 @@ void ABulletFarmCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 
 		//Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ABulletFarmCharacter::Look);
+
+		//Looking
+		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Start, this, &ABulletFarmCharacter::Interact);
 	}
 }
 
@@ -97,6 +101,10 @@ void ABulletFarmCharacter::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void ABulletFarmCharacter::Interact() {
+
 }
 
 void ABulletFarmCharacter::SetHasRifle(bool bNewHasRifle)

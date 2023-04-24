@@ -25,6 +25,16 @@ void UTP_WeaponComponent::Fire()
 		return;
 	}
 
+	if (Character->bulletCounts[(int32)Character->selectedBullet] <= 0) {
+		if (EmptySound != nullptr) {
+			UGameplayStatics::PlaySoundAtLocation(this, EmptySound, Character->GetActorLocation());
+		}
+
+		return;
+	} else {
+		Character->bulletCounts[(int32)Character->selectedBullet]--;
+	}
+
 	// Try and fire a projectile
 	if (ProjectileClass != nullptr)
 	{

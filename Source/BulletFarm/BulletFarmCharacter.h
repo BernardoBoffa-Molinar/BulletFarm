@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+#include "BulletType.h"
 #include "BulletFarmCharacter.generated.h"
 
 class UInputComponent;
@@ -47,10 +48,19 @@ protected:
 	virtual void BeginPlay();
 
 public:
+	TEnumAsByte<BulletType> selectedBullet;
+	TArray<int32> bulletCounts;
+	
+	UPROPERTY(EditAnywhere)
+	int32 bulletCapacity;
+public:
 		
 	/** Look Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* LookAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* InteractAction;
 
 	/** Bool for AnimBP to switch to another animation set */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Weapon)
@@ -70,6 +80,9 @@ protected:
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
+
+	/** Called for interact input */
+	void Interact();
 
 protected:
 	// APawn interface

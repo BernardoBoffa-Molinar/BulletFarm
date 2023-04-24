@@ -14,5 +14,14 @@ AAmmoStation::AAmmoStation()
 
 void AAmmoStation::OnInteract_Implementation() {
 	ABulletFarmCharacter* player = (ABulletFarmCharacter*)UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+	if (player != nullptr) {
+		player->bulletCounts[(int32)ammoType] = player->bulletCapacity;
+	}
+
+	// Try and play the sound if specified
+	if (fireSound != nullptr)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, fireSound, Character->GetActorLocation());
+	}
 }
 
