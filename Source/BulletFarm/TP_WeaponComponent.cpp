@@ -24,16 +24,15 @@ void UTP_WeaponComponent::Fire()
 	{
 		return;
 	}
-
-	if (Character->bulletCounts[(int32)Character->selectedBullet] <= 0) {
+	if (Character->bulletCounts[(int32)selectedAmmo] <= 0) {
 		if (EmptySound != nullptr) {
 			UGameplayStatics::PlaySoundAtLocation(this, EmptySound, Character->GetActorLocation());
 		}
-
+	
 		return;
-	} else {
-		Character->bulletCounts[(int32)Character->selectedBullet]--;
 	}
+	
+	Character->bulletCounts[(int32)selectedAmmo]--;
 
 	// Try and fire a projectile
 	if (ProjectileClass != nullptr)
@@ -51,7 +50,8 @@ void UTP_WeaponComponent::Fire()
 			ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
 	
 			// Spawn the projectile at the muzzle
-			World->SpawnActor<ABulletFarmProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+			ABulletFarmProjectile* projectile = World->SpawnActor<ABulletFarmProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+			projectile->type = Character->selectedBullet;
 		}
 	}
 	
@@ -71,6 +71,16 @@ void UTP_WeaponComponent::Fire()
 			AnimInstance->Montage_Play(FireAnimation, 1.f);
 		}
 	}
+}
+
+void UTP_WeaponComponent::SwapAmmoLeft() {
+	selectedAmmo =  TEnumAsByte<BulletType>((((int32) selectedAmmo) + 5) % 6); 
+	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Emerald, TEXT("Ammo swapped left"));
+}
+
+void UTP_WeaponComponent::SwapAmmoRight() {
+	selectedAmmo =  TEnumAsByte<BulletType>((((int32) selectedAmmo) + 1) % 6); 
+	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Emerald, TEXT("Ammo swapped right"));
 }
 
 void UTP_WeaponComponent::AttachWeapon(ABulletFarmCharacter* TargetCharacter)
@@ -101,6 +111,8 @@ void UTP_WeaponComponent::AttachWeapon(ABulletFarmCharacter* TargetCharacter)
 		{
 			// Fire
 			EnhancedInputComponent->BindAction(FireAction, ETriggerEvent::Triggered, this, &UTP_WeaponComponent::Fire);
+			EnhancedInputComponent->BindAction(SwapAmmoLeftAction, ETriggerEvent::Triggered, this, &UTP_WeaponComponent::SwapAmmoLeft);
+			EnhancedInputComponent->BindAction(SwapAmmoRightAction, ETriggerEvent::Triggered, this, &UTP_WeaponComponent::SwapAmmoRight);
 		}
 	}
 }
