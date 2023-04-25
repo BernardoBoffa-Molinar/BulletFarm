@@ -76,11 +76,50 @@ void UTP_WeaponComponent::Fire()
 void UTP_WeaponComponent::SwapAmmoLeft() {
 	Character->selectedBullet =  TEnumAsByte<BulletType>((((int32) Character->selectedBullet) + 5) % 6); 
 	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Emerald, TEXT("Ammo swapped left"));
+	DebugAmmoType();
 }
 
 void UTP_WeaponComponent::SwapAmmoRight() {
 	Character->selectedBullet =  TEnumAsByte<BulletType>((((int32) Character->selectedBullet) + 1) % 6); 
 	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Emerald, TEXT("Ammo swapped right"));
+	DebugAmmoType();
+}
+
+void UTP_WeaponComponent::DebugAmmoType()
+{
+	FString Debugmessage = "";
+	switch ((int32) Character->selectedBullet) {
+	case 0:
+		Debugmessage = "I am a Water Bullet";
+		GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Cyan, Debugmessage  );
+
+		break;
+	case 1:
+		
+		Debugmessage = "I am a Mud Bullet";
+		GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Turquoise, Debugmessage  );
+		break;
+	case 2:
+	
+		Debugmessage = "I am a Seed Bullet";
+		GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::White, Debugmessage  );
+		break;
+	case 3:
+
+		Debugmessage = "I am a Pesticide Bullet";
+		GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Purple, Debugmessage  );
+		break;
+	case 4:
+
+		Debugmessage = "I am a Sun Bullet";
+		GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Yellow, Debugmessage  );
+		break;
+	case 5:
+		Debugmessage = "I am a Manure Bullet";
+		GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Silver, Debugmessage  );
+		break;
+	}
+
 }
 
 void UTP_WeaponComponent::AttachWeapon(ABulletFarmCharacter* TargetCharacter)
@@ -132,3 +171,5 @@ void UTP_WeaponComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 		}
 	}
 }
+
+

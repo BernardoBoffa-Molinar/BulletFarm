@@ -3,6 +3,8 @@
 
 #include "PlantStateCompleteComponent.h"
 
+#include "PlantStateMachine.h"
+
 // Sets default values for this component's properties
 UPlantStateCompleteComponent::UPlantStateCompleteComponent()
 {
@@ -38,24 +40,26 @@ void UPlantStateCompleteComponent::SetPlantStateMachine(APlantStateMachine* Plan
 
 void UPlantStateCompleteComponent::OnStateEnter()
 {
-	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Green, TEXT("Entered Complete Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Black, TEXT("Entered Complete Plant State"));
 }
 
 void UPlantStateCompleteComponent::OnStateExit()
 {
-	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Green, TEXT("Exited Complete Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Black, TEXT("Exited Complete Plant State"));
 
 }
 
 void UPlantStateCompleteComponent::OnInteract()
 {
-	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Green, TEXT("Intereacted with Complete Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Black, TEXT("Intereacted with Complete Plant State"));
+	NeedSatisfied();
+	
 
 }
 
 void UPlantStateCompleteComponent::OnBulletCollision(BulletType BulletType)
 {
-	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Green, TEXT("Bullet Colision with  Complete Plant State"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Black, TEXT("Bullet Colision with  Complete Plant State"));
 	FString Debugmessage;
 
 	switch (BulletType) {
@@ -79,7 +83,10 @@ void UPlantStateCompleteComponent::OnBulletCollision(BulletType BulletType)
 
 void UPlantStateCompleteComponent::NeedSatisfied()
 {
-	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Green, TEXT("Needs of Complete Plant State Satisfied"));
+	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Black, TEXT("Needs of Complete Plant State Satisfied"));
+	PlantStateMachine->UpdateScore();
+	PlantStateMachine->ResetPlantScore();
+	PlantStateMachine->SetState(PlantStateMachine->GetBarePlantState());
 }
 
 FString UPlantStateCompleteComponent::NameToString()

@@ -121,7 +121,7 @@ void ABulletFarmCharacter::Interact() {
 	FHitResult RV_Hit(ForceInit);
 	FCollisionQueryParams RV_TraceParams = FCollisionQueryParams(FName(TEXT("RV_Trace")), true, this);
 	if (DoTrace(&RV_Hit, &RV_TraceParams)) {
-		GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Emerald, TEXT("Raycast Hit"));
+		//GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Emerald, TEXT("Raycast Hit"));
 		IReactToInteractInterface* reactingObject = Cast<IReactToInteractInterface>(RV_Hit.GetActor());
 		if (reactingObject != nullptr) {
 			reactingObject->Execute_OnInteract(RV_Hit.GetActor());

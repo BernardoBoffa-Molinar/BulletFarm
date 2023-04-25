@@ -65,6 +65,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Weapon")
 	void SwapAmmoRight();
 
+	void DebugAmmoType();
 protected:
 	/** Ends gameplay for this component. */
 	UFUNCTION()

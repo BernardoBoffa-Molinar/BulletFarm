@@ -106,13 +106,17 @@ void APlantStateMachine::SetState(IPlantState* stateToSet)
   }
   CurrentState = stateToSet;
   OnChangeShapeEvent.Broadcast();
+  CurrentStateName = GetCurrentStateName();
   CurrentState->OnStateEnter();
 }
 
 FString APlantStateMachine::GetCurrentStateName()
 {
-  return "Current Plant State: " + CurrentState->NameToString();
+  return "Current: " + CurrentState->NameToString();
 }
+
+
+
 
 IPlantState* APlantStateMachine::GetCurrentState()
 {
@@ -214,6 +218,69 @@ void APlantStateMachine::CreatePlantNeed()
   
 }
 
+void APlantStateMachine::UpdateScore()
+{
+  GEngine->AddOnScreenDebugMessage(-1,10.f,FColor::Black, "ScoreUpdate" );
+  
+}
+
+void APlantStateMachine::ResetPlantScore()
+{
+  PlantScore = 0;
+  OnChangeShapeEvent.Broadcast();
+}
+
+FString APlantStateMachine::GetInteractableTextByState()
+{
+  if(CurrentState != nullptr){
+
+    if(CurrentState == BareState && BareState!=nullptr)
+    {
+      return  "No Seed In Plant";
+    }
+
+    if(CurrentState == GrowingState && GrowingState!=nullptr)
+    {
+      return  "Plant Is Growing";
+    }
+      
+    if(CurrentState == CompleteState && CompleteState!=nullptr)
+    {
+      return  "Plant Is Done Growing";
+    }
+
+    if(CurrentState == NeedManureState && NeedManureState!=nullptr)
+    {
+      return  "Plant Needs Manure";
+    }
+      
+    if(CurrentState == NeedWaterState && NeedWaterState!=nullptr)
+    {
+      return  "Plant Needs Water";
+    }
+
+    if(CurrentState == NeedMudComponent && NeedMudComponent!=nullptr)
+    {
+      return  "Plant Needs Mud";
+    }
+
+    if(CurrentState == NeedSunState && NeedSunState!=nullptr)
+    {
+      return  "Plant Needs Sun";
+    }
+    
+    if(CurrentState == NeedPesticideState && NeedPesticideState!=nullptr)
+    {
+      return  "Plant Needs Pesticide";
+    }
+      
+  } 
+  
+
+  return  " Null Pointer";
+  
+}
+
 
 void APlantStateMachine::OnBulletHit_Implementation(TEnumAsByte<BulletType>& typeofBullet)
 {
@@ -242,12 +309,21 @@ void APlantStateMachine::OnBulletHit_Implementation(TEnumAsByte<BulletType>& typ
     Debugmessage = "Hit by a Manure Bullet";
     break;
   }
- // GEngine->AddOnScreenDebugMessage(-1,10.f,FColor::Green, Debugmessage );
+  GEngine->AddOnScreenDebugMessage(-1,10.f,FColor::Green, Debugmessage );
 
  // GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Purple, this->GetCurrentStateName() );
 
   CurrentState->OnBulletCollision(typeofBullet);
 	//IReactToBulletInterface::OnBulletHit(type);
+}
+
+void APlantStateMachine::OnInteract_Implementation()
+{
+  IReactToInteractInterface::OnInteract_Implementation();
+  GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Emerald, TEXT("Plant RayCast Hit"));
+  
+  CurrentState->OnInteract();
+  OnPlantInteractEvent.Broadcast();
 }
 
 

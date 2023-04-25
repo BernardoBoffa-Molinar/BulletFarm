@@ -6,13 +6,14 @@
 #include "GameFramework/Actor.h"
 #include "BulletType.h"
 #include "BulletData.h"
+#include "ReactToBulletInterface.h"
 #include "BulletFarmProjectile.generated.h"
 
 class USphereComponent;
 class UProjectileMovementComponent;
 
 UCLASS(config=Game)
-class ABulletFarmProjectile : public AActor
+class ABulletFarmProjectile : public AActor, public IReactToBulletInterface
 {
 	GENERATED_BODY()
 

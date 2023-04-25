@@ -55,7 +55,8 @@ void UPlantStateGrowingComponent::OnStateExit()
 void UPlantStateGrowingComponent::OnInteract()
 {
 	GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Emerald, TEXT("Intereacted with Growing Plant State"));
-	NeedSatisfied();
+	
+	
 }
 
 void UPlantStateGrowingComponent::OnBulletCollision(BulletType BulletType)

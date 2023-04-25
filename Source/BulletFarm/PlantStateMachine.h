@@ -7,13 +7,15 @@
 #include "PlantState.h"
 
 #include "ReactToBulletInterface.h"
+#include "ReactToInteractInterface.h"
 #include "PlantStateMachine.generated.h"
 
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FChangeShapeEvent);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPlantInteractEvent);
 
 UCLASS()
-class BULLETFARM_API APlantStateMachine : public AActor, public IReactToBulletInterface
+class BULLETFARM_API APlantStateMachine : public AActor, public IReactToBulletInterface, public IReactToInteractInterface
 {
 	GENERATED_BODY()
 	
@@ -59,6 +61,10 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category ="PlantInfo")
+	FString CurrentStateName;
+
+	int GetPlantScore(){return PlantScore;};
 	IPlantState* GetCurrentState();
 	IPlantState* GetBarePlantState();
 	IPlantState* GetGrowingPlantState();
@@ -72,15 +78,28 @@ public:
 	void IncreasedPlantGrowingScore();
 	void DecreasedPlantGrowingScore();
 	void CreatePlantNeed();
+	void UpdateScore();
+	void ResetPlantScore();
+
+	UFUNCTION(BlueprintCallable)
+	FString GetInteractableTextByState();
 	
 	void SetState(IPlantState* stateToSet);
 protected:
 	// initialize all plant states
 	void Initialization();
 	FString GetCurrentStateName();
+
+
+
 	
-	//UFUNCTION(BlueprintNativeEvent)
-	void OnBulletHit(TEnumAsByte<BulletType>& typeofBullet); virtual void OnBulletHit_Implementation(TEnumAsByte<BulletType>& typeofBullet);
+	UFUNCTION(BlueprintNativeEvent)
+	void OnBulletHit(TEnumAsByte<BulletType>& typeofBullet);
+	virtual void OnBulletHit_Implementation(TEnumAsByte<BulletType>& typeofBullet);
+
+
+	UFUNCTION(BlueprintNativeEvent)
+	void OnInteract(); virtual void OnInteract_Implementation() override;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	class UPlantStateBareComponent* BareComponent;
@@ -114,4 +133,7 @@ protected:
 	//InteractEvent PlantInterected;
 	UPROPERTY(BlueprintAssignable)
 	FChangeShapeEvent OnChangeShapeEvent;
+
+	UPROPERTY(BlueprintAssignable)
+	FPlantInteractEvent OnPlantInteractEvent;
 };
