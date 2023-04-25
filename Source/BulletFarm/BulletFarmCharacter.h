@@ -15,6 +15,9 @@ class UCameraComponent;
 class UAnimMontage;
 class USoundBase;
 
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUpDateUIEvent);
+
 UCLASS(config=Game)
 class ABulletFarmCharacter : public ACharacter
 {
@@ -47,17 +50,33 @@ class ABulletFarmCharacter : public ACharacter
 public:
 	ABulletFarmCharacter();
 
+
+    UFUNCTION(BlueprintCallable)
+	virtual void SetUpUI(ABulletFarmCharacter* character);
 protected:
 	virtual void BeginPlay();
 
 public:
+    UPROPERTY(VisibleAnywhere)
 	TEnumAsByte<BulletType> selectedBullet;
+	 UPROPERTY(VisibleAnywhere)
 	TArray<int32> bulletCounts;
+
+	UFUNCTION(BlueprintCallable)
+	int GetBulletTypeAsInt();
+
+	UFUNCTION(BlueprintCallable)
+	int GetBulletCountOfRequestedBullet(int RequestedBullet);
 	
 	UPROPERTY(EditAnywhere)
 	int32 bulletCapacity;
 public:
-		
+	UPROPERTY(BlueprintAssignable)
+	FUpDateUIEvent UIUpdateEvent;
+
+	UFUNCTION()
+	void CallToUpdateUI();
+	
 	/** Look Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* LookAction;

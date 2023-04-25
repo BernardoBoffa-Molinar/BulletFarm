@@ -71,17 +71,37 @@ void UTP_WeaponComponent::Fire()
 			AnimInstance->Montage_Play(FireAnimation, 1.f);
 		}
 	}
+
+
+	Character->CallToUpdateUI();
 }
 
 void UTP_WeaponComponent::SwapAmmoLeft() {
-	Character->selectedBullet =  TEnumAsByte<BulletType>((((int32) Character->selectedBullet) + 5) % 6); 
+
+	int indexInEnum = Character->selectedBullet -1 ;
+	if(indexInEnum < 0)
+	{
+		indexInEnum =5;
+	}
+
+	
+	//Character->selectedBullet =  TEnumAsByte<BulletType>((((int32) Character->selectedBullet) + 5) % 6);
+	Character->selectedBullet =  TEnumAsByte<BulletType>(indexInEnum); 
 	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Emerald, TEXT("Ammo swapped left"));
+	Character->CallToUpdateUI();
 	DebugAmmoType();
 }
 
 void UTP_WeaponComponent::SwapAmmoRight() {
-	Character->selectedBullet =  TEnumAsByte<BulletType>((((int32) Character->selectedBullet) + 1) % 6); 
+	//Character->selectedBullet =  TEnumAsByte<BulletType>((((int32) Character->selectedBullet) + 1) % 6); 
+	int indexInEnum = Character->selectedBullet + 1;
+	if(indexInEnum > 5)
+	{
+		indexInEnum = 0;
+	}
+	Character->selectedBullet =  TEnumAsByte<BulletType>(indexInEnum); 
 	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Emerald, TEXT("Ammo swapped right"));
+	Character->CallToUpdateUI();
 	DebugAmmoType();
 }
 
@@ -119,7 +139,7 @@ void UTP_WeaponComponent::DebugAmmoType()
 		GEngine->AddOnScreenDebugMessage(-1,3.f,FColor::Silver, Debugmessage  );
 		break;
 	}
-
+	
 }
 
 void UTP_WeaponComponent::AttachWeapon(ABulletFarmCharacter* TargetCharacter)

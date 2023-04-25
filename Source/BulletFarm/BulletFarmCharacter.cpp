@@ -40,6 +40,13 @@ ABulletFarmCharacter::ABulletFarmCharacter()
 	//CharacterMovementComponent = Cast<ACharacter>(this)->GetCharacterMovement();
 }
 
+void ABulletFarmCharacter::SetUpUI(ABulletFarmCharacter* character)
+{
+	
+}
+
+
+
 void ABulletFarmCharacter::BeginPlay()
 {
 	// Call the base class  
@@ -55,7 +62,23 @@ void ABulletFarmCharacter::BeginPlay()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+	//SetUpUI(this);
+	CallToUpdateUI();
+}
 
+int ABulletFarmCharacter::GetBulletTypeAsInt()
+{
+	return (int) selectedBullet;
+}
+
+int ABulletFarmCharacter::GetBulletCountOfRequestedBullet(int RequestedBullet)
+{
+	return  bulletCounts[RequestedBullet];
+}
+
+void ABulletFarmCharacter::CallToUpdateUI()
+{
+	UIUpdateEvent.Broadcast();
 }
 
 //////////////////////////////////////////////////////////////////////////// Input
