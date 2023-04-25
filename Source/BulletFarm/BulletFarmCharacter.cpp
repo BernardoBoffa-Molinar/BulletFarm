@@ -37,8 +37,6 @@ ABulletFarmCharacter::ABulletFarmCharacter()
 	//Mesh1P->SetRelativeRotation(FRotator(0.9f, -19.19f, 5.2f));
 	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
 
-	bulletCounts.Init(bulletCapacity, 6);
-
 	//CharacterMovementComponent = Cast<ACharacter>(this)->GetCharacterMovement();
 }
 
@@ -46,6 +44,8 @@ void ABulletFarmCharacter::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
+
+	bulletCounts.Init(bulletCapacity, 6);
 
 	//Add Input Mapping Context
 	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))

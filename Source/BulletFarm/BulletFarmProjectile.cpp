@@ -11,7 +11,7 @@ void ABulletFarmProjectile::BeginPlay()
 {
 	Super::BeginPlay();
 
-	/* Remove when Bullet switching is implemented*/
+	/*
 	int index= rand() % 6;
 	FString Debugmessage = "";
 	
@@ -52,7 +52,7 @@ void ABulletFarmProjectile::BeginPlay()
 	UStaticMeshComponent* staticMesh = this->FindComponentByClass<UStaticMeshComponent>();
 	staticMesh->SetMaterial(0, bulletDatas[index].bulletMat);
 	
-	/* End of Remove*/
+	*/
 }
 
 ABulletFarmProjectile::ABulletFarmProjectile() 
@@ -83,6 +83,16 @@ ABulletFarmProjectile::ABulletFarmProjectile()
 	
 
 	
+}
+
+void ABulletFarmProjectile::SetType(TEnumAsByte<BulletType> newType) {
+	type = newType;
+	UStaticMeshComponent* staticMesh = this->FindComponentByClass<UStaticMeshComponent>();
+	staticMesh->SetMaterial(0, bulletDatas[(int32)type].bulletMat);
+}
+
+TEnumAsByte<BulletType> ABulletFarmProjectile::GetType() {
+	return type;
 }
 
 void ABulletFarmProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)

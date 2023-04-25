@@ -30,12 +30,15 @@ class ABulletFarmProjectile : public AActor
 public:
 	ABulletFarmProjectile();
 
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	//UPROPERTY(EditAnywhere, Catergory = Weapon, meta = (AllowPrivateAccess = "true"))
 	TEnumAsByte<BulletType> type;
 
 	UPROPERTY(EditAnywhere)
 	TArray<FBulletData> bulletDatas;
 	
+	void SetType(TEnumAsByte<BulletType> newType);
+	TEnumAsByte<BulletType> GetType();
+
 	/** called when projectile hits something */
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
@@ -44,8 +47,6 @@ public:
 	USphereComponent* GetCollisionComp() const { return CollisionComp; }
 	/** Returns ProjectileMovement subobject **/
 	UProjectileMovementComponent* GetProjectileMovement() const { return ProjectileMovement; }
-
-
 	
 };
 

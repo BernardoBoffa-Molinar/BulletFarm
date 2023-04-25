@@ -73,6 +73,4 @@ protected:
 private:
 	/** The Character holding this weapon*/
 	ABulletFarmCharacter* Character;
-
-	TEnumAsByte<BulletType> selectedAmmo;
 };

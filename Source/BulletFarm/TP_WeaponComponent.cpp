@@ -24,7 +24,7 @@ void UTP_WeaponComponent::Fire()
 	{
 		return;
 	}
-	if (Character->bulletCounts[(int32)selectedAmmo] <= 0) {
+	if (Character->bulletCounts[(int32)Character->selectedBullet] <= 0) {
 		if (EmptySound != nullptr) {
 			UGameplayStatics::PlaySoundAtLocation(this, EmptySound, Character->GetActorLocation());
 		}
@@ -32,7 +32,7 @@ void UTP_WeaponComponent::Fire()
 		return;
 	}
 	
-	Character->bulletCounts[(int32)selectedAmmo]--;
+	Character->bulletCounts[(int32)Character->selectedBullet]--;
 
 	// Try and fire a projectile
 	if (ProjectileClass != nullptr)
@@ -51,7 +51,7 @@ void UTP_WeaponComponent::Fire()
 	
 			// Spawn the projectile at the muzzle
 			ABulletFarmProjectile* projectile = World->SpawnActor<ABulletFarmProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-			projectile->type = Character->selectedBullet;
+			projectile->SetType(Character->selectedBullet);
 		}
 	}
 	
@@ -74,12 +74,12 @@ void UTP_WeaponComponent::Fire()
 }
 
 void UTP_WeaponComponent::SwapAmmoLeft() {
-	selectedAmmo =  TEnumAsByte<BulletType>((((int32) selectedAmmo) + 5) % 6); 
+	Character->selectedBullet =  TEnumAsByte<BulletType>((((int32) Character->selectedBullet) + 5) % 6); 
 	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Emerald, TEXT("Ammo swapped left"));
 }
 
 void UTP_WeaponComponent::SwapAmmoRight() {
-	selectedAmmo =  TEnumAsByte<BulletType>((((int32) selectedAmmo) + 1) % 6); 
+	Character->selectedBullet =  TEnumAsByte<BulletType>((((int32) Character->selectedBullet) + 1) % 6); 
 	GEngine->AddOnScreenDebugMessage(-1,15.f,FColor::Emerald, TEXT("Ammo swapped right"));
 }
 
