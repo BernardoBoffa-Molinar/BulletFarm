@@ -129,6 +129,11 @@ public:
 
 
 
+	// plant score of growing
+	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category ="Score")
+	int PlayerScore =0;
+	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category ="Score")
+	float GameTimer =  300.0f;
 	
 };
 

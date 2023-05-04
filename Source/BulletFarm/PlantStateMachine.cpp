@@ -3,6 +3,8 @@
 
 #include "PlantStateMachine.h"
 
+#include "BulletFarmCharacter.h"
+#include <Kismet/GameplayStatics.h>
 #include "PlantStateBareComponent.h"
 #include "PlantStateCompleteComponent.h"
 #include "PlantStateGrowingComponent.h"
@@ -177,13 +179,14 @@ void APlantStateMachine::DecreasedPlantGrowingScore()
 {
   OnChangeShapeEvent.Broadcast();
 
-  /* Uncomment once we have Bullet switching proper
+  
   PlantScore--;
   if(PlantScore<0)
   {
     //Small Commit test
     PlantScore = 0; 
-  }*/
+  }
+  
 }
 
 void APlantStateMachine::CreatePlantNeed()
@@ -221,7 +224,12 @@ void APlantStateMachine::CreatePlantNeed()
 void APlantStateMachine::UpdateScore()
 {
   GEngine->AddOnScreenDebugMessage(-1,10.f,FColor::Black, "ScoreUpdate" );
-  
+  ABulletFarmCharacter* player = (ABulletFarmCharacter*)UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+  if(player != nullptr)
+  {
+    player->PlayerScore+=100;
+    player->CallToUpdateUI();
+  }
 }
 
 void APlantStateMachine::ResetPlantScore()

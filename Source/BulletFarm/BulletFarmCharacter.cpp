@@ -204,3 +204,5 @@ void ABulletFarmCharacter::EndSprint()
 {
 	GetCharacterMovement()->MaxWalkSpeed = 600.0f;
 }
+
+
